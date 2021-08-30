@@ -1,9 +1,27 @@
 // component to display button with received text etc
 
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { Text, Pressable, StyleSheet } from "react-native";
 
-const ButtonComponent = () => {
+const ButtonComponent = ({ text, color }) => {
+  // const buttonText = props.text;
+  // const buttonColor = props.color;
+
+  const buttonText = text;
+  const buttonColor = color;
+
+  const styles = StyleSheet.create({
+    buttonStyle: {
+      width: 125,
+      height: 25,
+      borderRadius: 5,
+      alignItems: "center",
+      justifyContent: "center",
+      margin: 5,
+      backgroundColor: buttonColor,
+    },
+  });
+
   function getWeather() {
     // let long = 18.672295;
     // let lat = 59.1287;
@@ -34,9 +52,9 @@ const ButtonComponent = () => {
   }
 
   return (
-    <TouchableOpacity onPress={actionOnTouch}>
-      <Text>My custom button</Text>
-    </TouchableOpacity>
+    <Pressable style={styles.buttonStyle} onPress={actionOnTouch}>
+      <Text>{buttonText}</Text>
+    </Pressable>
   );
 };
 

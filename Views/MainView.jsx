@@ -10,9 +10,10 @@ const MainView = () => {
   return (
     <View>
       <CurrentWeatherComponent />
-      <Text>Main View coming soon!</Text>
-      <ButtonComponent />
-      <ButtonComponent />
+      {/* <Text>Main View coming soon!</Text> */}
+      <ButtonComponent text="First button" color="blue" />
+      <ButtonComponent text="Second button" color="pink" />
+      <ButtonComponent text="Newest button" color="purple" />
 
       {/* <CurrentWeatherImage /> */}
       <SavedItems />
