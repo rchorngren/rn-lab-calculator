@@ -1,22 +1,15 @@
 import React from "react";
 import { Text, View } from "react-native";
-
 import ButtonComponent from "../Components/ButtonComponent";
-// import CurrentWeatherImage from "../Components/CurrentWeatherImage";
 import SavedItems from "../Components/SavedItems";
-import CurrentWeatherComponent from "../Components/CurrentWeatherComponent";
 import { useState } from "react";
-import { concat } from "react-native-reanimated";
 import { useEffect } from "react";
 
 const MainView = () => {
   const [inputValue, setInputValue] = useState(0);
-  const [currentInput, setCurrentInput] = useState(null);
   const [previousInput, setPreviousInput] = useState(null);
   const [operation, setOperation] = useState(null);
-  const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
-
   const [clearOnNextInput, setClearOnNextInput] = useState(true);
 
   function updateInputValue(value) {
@@ -181,6 +174,9 @@ const MainView = () => {
           runFunction={() => method("/")}
         />
       </View>
+
+      <SavedItems pastResults={history} />
+
     </View>
   );
 };

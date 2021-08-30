@@ -3,10 +3,8 @@
 import React from "react";
 import { Text, Pressable, StyleSheet } from "react-native";
 
+// Using context rather than props
 const ButtonComponent = ({ text, color, runFunction }) => {
-  // const buttonText = props.text;
-  // const buttonColor = props.color;
-
   const buttonText = text;
   const buttonColor = color;
   const functionToRun = runFunction;
