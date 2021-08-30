@@ -3,18 +3,19 @@
 import React from "react";
 import { Text, Pressable, StyleSheet } from "react-native";
 
-const ButtonComponent = ({ text, color }) => {
+const ButtonComponent = ({ text, color, runFunction }) => {
   // const buttonText = props.text;
   // const buttonColor = props.color;
 
   const buttonText = text;
   const buttonColor = color;
+  const functionToRun = runFunction;
 
   const styles = StyleSheet.create({
     buttonStyle: {
-      width: 125,
-      height: 25,
-      borderRadius: 5,
+      width: 50,
+      height: 50,
+      borderRadius: 25,
       alignItems: "center",
       justifyContent: "center",
       margin: 5,
@@ -52,7 +53,7 @@ const ButtonComponent = ({ text, color }) => {
   }
 
   return (
-    <Pressable style={styles.buttonStyle} onPress={actionOnTouch}>
+    <Pressable style={styles.buttonStyle} onPress={functionToRun}>
       <Text>{buttonText}</Text>
     </Pressable>
   );
