@@ -28,14 +28,38 @@ const MainView = () => {
     }
   }
 
+  function clear() {
+    setInputValue(0);
+    setPreviousInput(null);
+    setOperation(null);
+  }
+
   function method(method) {
+    setPreviousInput(inputValue);
+    setClearOnNextInput(true);
+
     switch (method) {
       case "C":
         clear();
         break;
 
+      case "+":
+        setOperation("+");
+        break;
+
+      case "-":
+        setOperation("-");
+        break;
+
+      case "*":
+        setOperation("*");
+        break;
+
+      case "/":
+        setOperation("/");
+        break;
+
       case "=":
-        console.log("operation: ", operation);
         const firstValue = parseFloat(previousInput);
         const secondValue = parseFloat(inputValue);
 
@@ -51,31 +75,10 @@ const MainView = () => {
         } else if (operation == "/") {
           setInputValue(firstValue / secondValue);
           setHistory((history) => [...history, firstValue / secondValue]);
+        } else {
+          console.log("unknown operation");
         }
-        setClearOnNextInput(true);
-        break;
 
-      case "+":
-        setPreviousInput(inputValue);
-        setOperation("+");
-        setClearOnNextInput(true);
-        break;
-
-      case "-":
-        setPreviousInput(inputValue);
-        setOperation("-");
-        setClearOnNextInput(true);
-        break;
-
-      case "*":
-        setPreviousInput(inputValue);
-        setOperation("*");
-        setClearOnNextInput(true);
-        break;
-
-      case "/":
-        setPreviousInput(inputValue);
-        setOperation("/");
         setClearOnNextInput(true);
         break;
 
