@@ -1,20 +1,30 @@
-// component to display and manage previously saved items
-
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, StyleSheet } from "react-native";
 
 //demonstrating the use of props instead of context
-const SavedItems = (props) => {
+const HistoryComponent = (props) => {
   const [history, setHistory] = useState([]);
+
+  const styles = StyleSheet.create({
+    scrollViewContainer: {
+      height: 75,
+      width: "100%",
+      borderRadius: 5,
+      borderWidth: 3,
+      borderColor: "black",
+      marginTop: 20,
+      backgroundColor: "gray"
+    }
+  })
 
   useEffect(() => {
     setHistory(props.pastResults.reverse());
   }, [props.pastResults])
 
   return (
-    <ScrollView style={{ height: 50, width: "100%", backgroundColor: "gray" }}>
+    <ScrollView style={styles.scrollViewContainer}>
       {history.length > 0 ?
         props.pastResults.map((item, index) =>
           <View key={index}>
@@ -28,4 +38,4 @@ const SavedItems = (props) => {
   );
 };
 
-export default SavedItems;
+export default HistoryComponent;

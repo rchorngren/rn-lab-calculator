@@ -1,5 +1,3 @@
-// component to display image based on current weather
-
 import React from "react";
 import { Image } from "react-native";
 

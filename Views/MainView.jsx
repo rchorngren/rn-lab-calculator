@@ -1,8 +1,10 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import ButtonComponent from "../Components/ButtonComponent";
-import SavedItems from "../Components/SavedItems";
+import HistoryComponent from "../Components/HistoryComponent";
 import { useState } from "react";
+import DisplayComponent from "../Components/DisplayComponent";
+import CurrentWeatherComponent from "../Components/CurrentWeatherComponent";
 import { useEffect } from "react";
 
 const MainView = () => {
@@ -11,6 +13,17 @@ const MainView = () => {
   const [operation, setOperation] = useState(null);
   const [history, setHistory] = useState([]);
   const [clearOnNextInput, setClearOnNextInput] = useState(true);
+  const [easterEgg, setEasterEgg] = useState(false);
+
+  const styles = StyleSheet.create({
+    mainViewContainer: {
+      width: "65%",
+      alignItems: "center",
+    },
+    calculatorContainer: {
+      maxWidth: 240
+    }
+  })
 
   function updateInputValue(value) {
     if (clearOnNextInput) {
@@ -72,6 +85,8 @@ const MainView = () => {
           console.log("unknown operation");
         }
 
+        
+
         setClearOnNextInput(true);
         break;
 
@@ -80,104 +95,119 @@ const MainView = () => {
   }
 
   useEffect(() => {
-    console.log("history", history);
-  }, [history]);
+    if (inputValue === Infinity) {
+      console.log("cracking easter egg");
+      setEasterEgg(true);
+    }
+  }, [inputValue]);
 
   return (
-    <View>
-      <Text>Display: {inputValue}</Text>
+    <View style={styles.mainViewContainer}>
+      {easterEgg ? (
+        <View>
+          <CurrentWeatherComponent />
+        </View>
+      ) : (
+        <View style={styles.calculatorContainer}>
+          <DisplayComponent displayText={inputValue} />
 
-      <View style={{ flexDirection: "row" }}>
-        <ButtonComponent
-          text="1"
-          color="blue"
-          runFunction={() => updateInputValue(1)}
-        />
-        <ButtonComponent
-          text="2"
-          color="blue"
-          runFunction={() => updateInputValue(2)}
-        />
-        <ButtonComponent
-          text="3"
-          color="blue"
-          runFunction={() => updateInputValue(3)}
-        />
-        <ButtonComponent
-          text="+"
-          color="yellow"
-          runFunction={() => method("+")}
-        />
-      </View>
+          <View style={{ flexDirection: "row" }}>
+            <ButtonComponent
+              text="1"
+              color="blue"
+              runFunction={() => updateInputValue(1)}
+            />
+            <ButtonComponent
+              text="2"
+              color="blue"
+              runFunction={() => updateInputValue(2)}
+            />
+            <ButtonComponent
+              text="3"
+              color="blue"
+              runFunction={() => updateInputValue(3)}
+            />
+            <ButtonComponent
+              text="+"
+              color="yellow"
+              runFunction={() => method("+")}
+            />
+          </View>
 
-      <View style={{ flexDirection: "row" }}>
-        <ButtonComponent
-          text="4"
-          color="blue"
-          runFunction={() => updateInputValue(4)}
-        />
-        <ButtonComponent
-          text="5"
-          color="blue"
-          runFunction={() => updateInputValue(5)}
-        />
-        <ButtonComponent
-          text="6"
-          color="blue"
-          runFunction={() => updateInputValue(6)}
-        />
-        <ButtonComponent
-          text="-"
-          color="yellow"
-          runFunction={() => method("-")}
-        />
-      </View>
+          <View style={{ flexDirection: "row" }}>
+            <ButtonComponent
+              text="4"
+              color="blue"
+              runFunction={() => updateInputValue(4)}
+            />
+            <ButtonComponent
+              text="5"
+              color="blue"
+              runFunction={() => updateInputValue(5)}
+            />
+            <ButtonComponent
+              text="6"
+              color="blue"
+              runFunction={() => updateInputValue(6)}
+            />
+            <ButtonComponent
+              text="-"
+              color="yellow"
+              runFunction={() => method("-")}
+            />
+          </View>
 
-      <View style={{ flexDirection: "row" }}>
-        <ButtonComponent
-          text="7"
-          color="blue"
-          runFunction={() => updateInputValue(7)}
-        />
-        <ButtonComponent
-          text="8"
-          color="blue"
-          runFunction={() => updateInputValue(8)}
-        />
-        <ButtonComponent
-          text="9"
-          color="blue"
-          runFunction={() => updateInputValue(9)}
-        />
-        <ButtonComponent
-          text="*"
-          color="yellow"
-          runFunction={() => method("*")}
-        />
-      </View>
+          <View style={{ flexDirection: "row" }}>
+            <ButtonComponent
+              text="7"
+              color="blue"
+              runFunction={() => updateInputValue(7)}
+            />
+            <ButtonComponent
+              text="8"
+              color="blue"
+              runFunction={() => updateInputValue(8)}
+            />
+            <ButtonComponent
+              text="9"
+              color="blue"
+              runFunction={() => updateInputValue(9)}
+            />
+            <ButtonComponent
+              text="*"
+              color="yellow"
+              runFunction={() => method("*")}
+            />
+          </View>
 
-      <View style={{ flexDirection: "row" }}>
-        <ButtonComponent text="C" color="red" runFunction={() => method("C")} />
-        <ButtonComponent
-          text="0"
-          color="blue"
-          runFunction={() => updateInputValue(0)}
-        />
-        <ButtonComponent
-          text="="
-          color="green"
-          runFunction={() => method("=")}
-        />
-        <ButtonComponent
-          text="/"
-          color="yellow"
-          runFunction={() => method("/")}
-        />
-      </View>
+          <View style={{ flexDirection: "row" }}>
+            <ButtonComponent text="C" color="red" runFunction={() => method("C")} />
+            <ButtonComponent
+              text="0"
+              color="blue"
+              runFunction={() => updateInputValue(0)}
+            />
+            <ButtonComponent
+              text="="
+              color="green"
+              runFunction={() => method("=")}
+            />
+            <ButtonComponent
+              text="/"
+              color="yellow"
+              runFunction={() => method("/")}
+            />
+          </View>
 
-      <SavedItems pastResults={history} />
+          <HistoryComponent pastResults={history} />
 
+          {/* {easterEgg} */}
+
+        </View>
+      )}
     </View>
+
+
   );
 };
 
