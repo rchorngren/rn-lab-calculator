@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches snapshot on DisplayComponent 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "flex-end",
+      "backgroundColor": "green",
+      "borderColor": "black",
+      "borderRadius": 5,
+      "borderWidth": 3,
+      "height": 75,
+      "justifyContent": "center",
+      "marginBottom": 20,
+      "overflow": "hidden",
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 32,
+        "fontWeight": "bold",
+        "marginRight": 15,
+      }
+    }
+  >
+    Current weather
+  </Text>
+</View>
+`;
