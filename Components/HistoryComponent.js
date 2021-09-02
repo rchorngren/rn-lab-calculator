@@ -16,6 +16,9 @@ const HistoryComponent = (props) => {
       borderColor: "black",
       marginTop: 20,
       backgroundColor: "gray"
+    },
+    historyText: {
+      fontSize: 20,
     }
   })
 
@@ -30,7 +33,7 @@ const HistoryComponent = (props) => {
       {history?.length > 0 ?
         props.pastResults.map((item, index) =>
           <View key={index}>
-            <Text>{item}</Text>
+            <Text style={styles.historyText}>{item}</Text>
           </View>
         )
         :
