@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import ButtonComponent from "../Components/ButtonComponent";
 import HistoryComponent from "../Components/HistoryComponent";
 import { useState } from "react";
@@ -14,6 +14,7 @@ const MainView = () => {
   const [history, setHistory] = useState([]);
   const [clearOnNextInput, setClearOnNextInput] = useState(true);
   const [easterEgg, setEasterEgg] = useState(false);
+  const [currentWeather, setCurrentWeather] = useState('');
 
   const styles = StyleSheet.create({
     mainViewContainer: {
@@ -21,7 +22,12 @@ const MainView = () => {
       alignItems: "center",
     },
     calculatorContainer: {
-      maxWidth: 240
+      maxWidth: 240,
+    },
+    easterEggContainer: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
     }
   })
 
@@ -104,8 +110,9 @@ const MainView = () => {
   return (
     <View style={styles.mainViewContainer}>
       {easterEgg ? (
-        <View>
-          <CurrentWeatherComponent />
+        <View style={styles.easterEggContainer}>
+          <CurrentWeatherComponent getWeather={setCurrentWeather} />
+          <Text>Vindstyrka på Vånö: {currentWeather} m/s</Text>
         </View>
       ) : (
         <View style={styles.calculatorContainer}>
@@ -200,8 +207,6 @@ const MainView = () => {
           </View>
 
           <HistoryComponent pastResults={history} />
-
-          {/* {easterEgg} */}
 
         </View>
       )}

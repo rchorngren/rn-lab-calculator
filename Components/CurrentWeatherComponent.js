@@ -1,27 +1,16 @@
-import React from "react";
-import { useEffect } from "react";
-import { View, Text } from "react-native";
+import React, { useEffect } from "react";
+import { View } from "react-native";
 import CurrentWeatherImage from "./CurrentWeatherImage";
 
-const CurrentWeatherComponent = () => {
+const CurrentWeatherComponent = (props) => {
 
   function getWeather() {
-
     fetch(
       "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.672295/lat/59.128700/data.json"
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(
-          "Sikt: ",
-          json.timeSeries[4].parameters[2].values,
-          " kilometer"
-        );
-        console.log(
-          "Vindstyrka: ",
-          json.timeSeries[0].parameters[4].values,
-          "m/s"
-        );
+        props.getWeather(json.timeSeries[0].parameters[14].values);
       })
       .catch((error) => {
         console.error(error);
@@ -41,7 +30,6 @@ const CurrentWeatherComponent = () => {
       }}
     >
       <CurrentWeatherImage />
-      <Text>Current weather goes here</Text>
     </View>
   );
 };
