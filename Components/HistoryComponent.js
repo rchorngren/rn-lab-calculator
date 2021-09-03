@@ -24,14 +24,15 @@ const HistoryComponent = (props) => {
 
   useEffect(() => {
     if(props.pastResults) {
-      setHistory(props.pastResults.reverse());
+      // setHistory(props.pastResults.reverse());
+      setHistory(props.pastResults);
     }
   }, [props.pastResults])
 
   return (
     <ScrollView style={styles.scrollViewContainer}>
       {history?.length > 0 ?
-        props.pastResults.map((item, index) =>
+        props.pastResults.slice(0).reverse().map((item, index) =>
           <View key={index}>
             <Text style={styles.historyText}>{item}</Text>
           </View>

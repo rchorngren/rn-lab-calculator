@@ -78,21 +78,24 @@ const MainView = () => {
         if (operation == "+") {
           setInputValue(firstValue + secondValue);
           setHistory((history) => [...history, firstValue + secondValue]);
+
         } else if (operation == "-") {
           setInputValue(firstValue - secondValue);
-          setHistory((history) => [...history, firstValue - secondValue]);
+
+
         } else if (operation == "*") {
           setInputValue(firstValue * secondValue);
           setHistory((history) => [...history, firstValue * secondValue]);
+
         } else if (operation == "/") {
           setInputValue(firstValue / secondValue);
           setHistory((history) => [...history, firstValue / secondValue]);
+
         } else {
-          console.log("unknown operation");
+          console.log("unknown operation - did you press +, -, * or / after last calculation?");
         }
 
-        
-
+        setOperation(null);
         setClearOnNextInput(true);
         break;
 
@@ -101,7 +104,7 @@ const MainView = () => {
   }
 
   useEffect(() => {
-    if (inputValue === Infinity) {
+    if (inputValue === 705) {
       console.log("cracking easter egg");
       setEasterEgg(true);
     }
