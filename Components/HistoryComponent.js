@@ -24,7 +24,6 @@ const HistoryComponent = (props) => {
 
   useEffect(() => {
     if(props.pastResults) {
-      // setHistory(props.pastResults.reverse());
       setHistory(props.pastResults);
     }
   }, [props.pastResults])

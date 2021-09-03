@@ -215,7 +215,6 @@ const MainView = () => {
       )}
     </View>
 
-
   );
 };
 
