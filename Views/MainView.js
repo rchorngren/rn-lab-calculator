@@ -81,7 +81,7 @@ const MainView = () => {
 
         } else if (operation == "-") {
           setInputValue(firstValue - secondValue);
-
+          setHistory((history) => [...history, firstValue - secondValue]);
 
         } else if (operation == "*") {
           setInputValue(firstValue * secondValue);
