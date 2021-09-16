@@ -1,9 +1,9 @@
-import React from "react";
-import { Text, Pressable, StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import { Pressable, StyleSheet } from "react-native";
+import ButtonContext, { ButtonProvider } from "./ButtonContext";
 
 // Using context rather than props
 const ButtonComponent = ({ text, color, runFunction }) => {
-  const buttonText = text;
   const buttonColor = color;
   const functionToRun = runFunction;
 
@@ -16,14 +16,21 @@ const ButtonComponent = ({ text, color, runFunction }) => {
       borderRadius: 25,
       margin: 5,
       borderWidth: 2,
-      borderColor: 'black',
+      borderColor: "black",
       backgroundColor: buttonColor,
     },
   });
 
+  function ButtonText() {
+    const textOnButton = useContext(ButtonContext);
+    return <div>{textOnButton.buttonText}</div>;
+  }
+
   return (
     <Pressable style={styles.buttonStyle} onPress={functionToRun}>
-      <Text>{buttonText}</Text>
+      <ButtonProvider value={{ buttonText: text }}>
+        <ButtonText />
+      </ButtonProvider>
     </Pressable>
   );
 };
